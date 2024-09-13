@@ -1,14 +1,15 @@
-import zipfile
+from flask import Flask, send_from_directory
 import os
 
-def unzip_file(zip_path, extract_to='.'):
-    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(extract_to)
+app = Flask(__name__)
 
-# Descomprimir el archivo
-unzip_file('rtype_style_game_v3_o1mini.zip')
+@app.route('/')
+def index():
+    return "Bienvenido al servidor del juego R-Type!"
 
-# Listar el contenido del directorio actual
-print("Contenido del directorio después de descomprimir:")
-for item in os.listdir('.'):
-    print(item)
+@app.route('/<path:path>')
+def serve_file(path):
+    return send_from_directory('rtype_style_game_v3_o1mini', path)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080)
