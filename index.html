@@ -22,8 +22,15 @@
 <body>
     <div id="game-container">
         <h1>Bienvenido al juego R-Type</h1>
-        <p>El juego se cargará aquí pronto.</p>
+        <p id="loading-message">El juego se cargará aquí pronto.</p>
+        <canvas id="game-canvas" style="display: none;"></canvas>
     </div>
     <script src="main.js"></script>
+    <script>
+        window.onload = function() {
+            console.log("Página cargada completamente");
+            document.getElementById('loading-message').textContent = "¡Juego cargado!";
+        }
+    </script>
 </body>
 </html>
