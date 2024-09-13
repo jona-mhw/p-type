@@ -4,33 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>R-Type Game</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        #game-container {
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div id="game-container">
         <h1>Bienvenido al juego R-Type</h1>
-        <p id="loading-message">El juego se cargará aquí pronto.</p>
-        <canvas id="game-canvas" style="display: none;"></canvas>
+        <p id="loading-message">El juego se está cargando...</p>
+        <canvas id="game-canvas"></canvas>
     </div>
-    <script src="main.js"></script>
-    <script>
-        window.onload = function() {
-            console.log("Página cargada completamente");
-            document.getElementById('loading-message').textContent = "¡Juego cargado!";
-        }
-    </script>
+    <script src="/js/main.js"></script>
+    <script src="/js/game.js"></script>
 </body>
 </html>

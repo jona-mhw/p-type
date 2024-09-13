@@ -1,7 +1,7 @@
 from flask import Flask, send_from_directory, abort
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 @app.route('/')
 def index():
@@ -10,7 +10,10 @@ def index():
 @app.route('/<path:path>')
 def serve_static(path):
     try:
-        return send_from_directory('.', path)
+        if os.path.exists(os.path.join('static', path)):
+            return send_from_directory('static', path)
+        else:
+            return send_from_directory('.', path)
     except FileNotFoundError:
         abort(404)
 
