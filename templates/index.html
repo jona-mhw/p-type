@@ -41,3 +41,45 @@
     <script src="{{ url_for('static', filename='game.js') }}"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Naves</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #highScores { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Juego de Naves</h1>
+    <div id="game">
+        <!-- Aquí irá el juego -->
+    </div>
+    <div id="highScores">
+        <h2>Puntuaciones Altas</h2>
+        <ul id="scoresList"></ul>
+    </div>
+
+    <script>
+        // Función para cargar las puntuaciones altas
+        function loadHighScores() {
+            fetch('/highscores')
+                .then(response => response.json())
+                .then(scores => {
+                    const scoresList = document.getElementById('scoresList');
+                    scoresList.innerHTML = '';
+                    scores.forEach(score => {
+                        const li = document.createElement('li');
+                        li.textContent = `${score.initials}: ${score.score}`;
+                        scoresList.appendChild(li);
+                    });
+                });
+        }
+
+        // Cargar puntuaciones al iniciar la página
+        loadHighScores();
+    </script>
+</body>
+</html>
