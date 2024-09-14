@@ -1,0 +1,43 @@
+<!-- --- templates/index.html --- -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>R-Type 2D - Celeste Edition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>R-Type 2D</h1>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div id="scoreBoard">Puntaje: 0</div>
+    
+    <!-- Botones de control para móviles -->
+    <div id="mobileControls">
+        <button id="upBtn">↑</button>
+        <button id="shootBtn">✦</button>
+        <button id="downBtn">↓</button>
+    </div>
+    
+    <!-- Modal para ingresar iniciales -->
+    <div id="initialsModal" class="modal">
+        <div class="modal-content">
+            <h2>¡Nuevo Récord!</h2>
+            <p>Ingresa tus iniciales:</p>
+            <input type="text" id="initialsInput" maxlength="3" placeholder="ABC">
+            <button id="submitInitials">Guardar</button>
+        </div>
+    </div>
+    
+    <!-- Botón para reiniciar el juego -->
+    <button id="restartBtn" class="hidden">Reiniciar Juego</button>
+    
+    <!-- Sección de récords -->
+    <div id="highScores">
+        <h2>Récords</h2>
+        <ul id="highScoresList"></ul>
+    </div>
+    
+    <script src="{{ url_for('static', filename='game.js') }}"></script>
+</body>
+</html>
