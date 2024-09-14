@@ -46,40 +46,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Naves</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        #highScores { margin-top: 20px; }
-    </style>
+    <title>R-Type 2D - Celeste Edition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Juego de Naves</h1>
+    <h1>R-Type 2D - Celeste Edition</h1>
     <div id="game">
-        <!-- Aquí irá el juego -->
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div id="scoreBoard">Puntaje: <span id="currentScore">0</span></div>
     </div>
+    
+    <div id="mobileControls">
+        <button id="leftBtn">←</button>
+        <button id="rightBtn">→</button>
+        <button id="upBtn">↑</button>
+        <button id="downBtn">↓</button>
+        <button id="shootBtn">✦</button>
+    </div>
+    
+    <div id="initialsModal" class="modal">
+        <div class="modal-content">
+            <h2>¡Nuevo Récord!</h2>
+            <p>Ingresa tus iniciales:</p>
+            <input type="text" id="initialsInput" maxlength="3" placeholder="ABC">
+            <button id="submitInitials">Guardar</button>
+        </div>
+    </div>
+    
+    <button id="restartBtn" class="hidden">Reiniciar Juego</button>
+    
     <div id="highScores">
-        <h2>Puntuaciones Altas</h2>
-        <ul id="scoresList"></ul>
+        <h2>Récords</h2>
+        <ul id="highScoresList"></ul>
     </div>
-
-    <script>
-        // Función para cargar las puntuaciones altas
-        function loadHighScores() {
-            fetch('/highscores')
-                .then(response => response.json())
-                .then(scores => {
-                    const scoresList = document.getElementById('scoresList');
-                    scoresList.innerHTML = '';
-                    scores.forEach(score => {
-                        const li = document.createElement('li');
-                        li.textContent = `${score.initials}: ${score.score}`;
-                        scoresList.appendChild(li);
-                    });
-                });
-        }
-
-        // Cargar puntuaciones al iniciar la página
-        loadHighScores();
-    </script>
+    
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
 </body>
 </html>
